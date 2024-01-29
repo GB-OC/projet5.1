@@ -125,13 +125,15 @@
         .attr("src", element.attr("src"));
       $(`#${lightboxId}`).modal("toggle");
     },
+    
     prevImage() {
       let activeImage = $(".lightboxImage").attr("src");
       let activeTag = $(".tags-bar span.active-tag").data("images-toggle");
       let imagesCollection = this.getFilteredImages(activeTag);
-      let index = imagesCollection.findIndex(img => img.attr("src") === activeImage);
+      let imagesArray = Array.from(imagesCollection); // Convertir la collection en un tableau
+      let index = imagesArray.findIndex(img => img.getAttribute("src") === activeImage);
       let prev = imagesArray[index - 1] || imagesArray[imagesArray.length - 1];
-      $(".lightboxImage").attr("src", prev.attr("src"));
+      $(".lightboxImage").attr("src", prev.getAttribute("src"));
     },
     
     nextImage() {
